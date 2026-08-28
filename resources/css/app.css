@@ -1,0 +1,151 @@
+@import 'tailwindcss';
+
+@source '../../vendor/livewire/livewire/src/Features/**/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../../app/**/*.php';
+
+/*
+ * Paleta institucional ASSESG, extraída da logomarca:
+ *   primary   #0B3A5D  azul-marinho da tipografia e da figura à esquerda
+ *   secondary #628B72  verde-sálvia das folhas
+ *   accent    #C9B999  areia do coração e da figura à direita
+ *   danger    #B4593F  terracota harmonizado, reservado às saídas
+ */
+@theme {
+    --color-primary-50: #f3f5f7;
+    --color-primary-100: #e4e9ed;
+    --color-primary-200: #c4d0d8;
+    --color-primary-300: #99acbb;
+    --color-primary-400: #597991;
+    --color-primary-500: #0b3a5d;
+    --color-primary-600: #0a3352;
+    --color-primary-700: #082b45;
+    --color-primary-800: #062236;
+    --color-primary-900: #051a29;
+    --color-primary-950: #03101a;
+
+    --color-secondary-50: #f7f9f8;
+    --color-secondary-100: #eef2ef;
+    --color-secondary-200: #d9e3dd;
+    --color-secondary-300: #bdcec4;
+    --color-secondary-400: #94b09f;
+    --color-secondary-500: #628b72;
+    --color-secondary-600: #567a64;
+    --color-secondary-700: #496754;
+    --color-secondary-800: #395142;
+    --color-secondary-900: #2b3d32;
+    --color-secondary-950: #1b2720;
+
+    --color-accent-50: #fcfcfa;
+    --color-accent-100: #f9f7f4;
+    --color-accent-200: #f2eee7;
+    --color-accent-300: #e8e2d4;
+    --color-accent-400: #dacfba;
+    --color-accent-500: #c9b999;
+    --color-accent-600: #b1a387;
+    --color-accent-700: #958971;
+    --color-accent-800: #756b59;
+    --color-accent-900: #585143;
+    --color-accent-950: #38342b;
+
+    --color-danger-50: #fbf7f5;
+    --color-danger-100: #f7edea;
+    --color-danger-200: #edd7d1;
+    --color-danger-300: #e0b9ae;
+    --color-danger-400: #cc8e7c;
+    --color-danger-500: #b4593f;
+    --color-danger-600: #9e4e37;
+    --color-danger-700: #85422f;
+    --color-danger-800: #683425;
+    --color-danger-900: #4f271c;
+    --color-danger-950: #321912;    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --color-canvas: #f6f7f5;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-canvas);
+        color: var(--color-primary-900);
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+/* Declarado como @utility (e não em @layer components) para que as variantes
+   abaixo possam compô-lo com @apply. */
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition
+           focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@layer components {
+    .card {
+        @apply rounded-xl border border-primary-100 bg-white shadow-sm;
+    }
+
+    /* Cabeçalho de seção dentro de um card. */
+    .card-header {
+        @apply flex items-center justify-between gap-3 border-b border-primary-50 px-4 py-3;
+    }
+
+    .label {
+        @apply mb-1.5 block text-sm font-medium text-primary-800;
+    }
+
+    .input {
+        @apply w-full rounded-lg border border-primary-200 bg-white px-3 py-2 text-sm text-primary-900 shadow-sm transition
+               placeholder:text-primary-300
+               focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none
+               disabled:bg-primary-50 disabled:text-primary-400;
+    }
+
+    .input-error {
+        @apply border-danger-500 focus:border-danger-500 focus:ring-danger-500/20;
+    }
+
+    .error-message {
+        @apply mt-1.5 flex items-start gap-1 text-sm text-danger-700;
+    }
+
+    .btn-primary {
+        @apply btn bg-primary-500 text-white hover:bg-primary-600 focus-visible:outline-primary-500;
+    }
+
+    .btn-secondary {
+        @apply btn bg-secondary-500 text-white hover:bg-secondary-600 focus-visible:outline-secondary-500;
+    }
+
+    .btn-outline {
+        @apply btn border border-primary-200 bg-white text-primary-700 hover:bg-primary-50 focus-visible:outline-primary-500;
+    }
+
+    .btn-danger {
+        @apply btn bg-danger-500 text-white hover:bg-danger-600 focus-visible:outline-danger-500;
+    }
+
+    .btn-ghost {
+        @apply btn text-primary-600 hover:bg-primary-50 focus-visible:outline-primary-500;
+    }
+
+    .badge {
+        @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold;
+    }
+
+    .table-head {
+        @apply px-4 py-2.5 text-left text-[11px] font-bold tracking-wider text-primary-400 uppercase;
+    }
+
+    .table-cell {
+        @apply px-4 py-3 text-sm text-primary-800;
+    }
+
+    /* Valores monetários alinham melhor com largura de dígito fixa. */
+    .table-amount {
+        @apply px-4 py-3 text-right text-sm font-semibold tabular-nums whitespace-nowrap;
+    }
+}
